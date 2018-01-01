@@ -1,0 +1,23 @@
+用户：账号 用户类型（商户，普通用户，管理员。商户注册上传营业执照) 密码 邮箱 昵称 空闲时间表 领导值 参与度 财富值 头像 标签（例如：xx活动的优秀参与者）。
+活动：发布者头像 姓名 时间 地点 描述 评价 评级 参与人数（参与上限和已参加）。
+user:
+account
+kindsOfUser
+password
+E-mail
+username
+freeTimeTable
+LeadValue
+JoinValue
+worthValue
+HeadImg
+userAttribute
+
+action:
+HeadImg
+username
+actionTime
+actionPlace
+actionDescribe
+actionLevel
+actionNum
