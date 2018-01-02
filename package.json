@@ -1,0 +1,22 @@
+{
+  "name": "down",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sadofriod/sandsOfTime.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sadofriod/sandsOfTime/issues"
+  },
+  "homepage": "https://github.com/sadofriod/sandsOfTime#readme",
+  "dependencies": {
+    "react-native-cli": "^2.0.1"
+  }
+}
