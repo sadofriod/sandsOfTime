@@ -9,34 +9,67 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button,
 } from 'react-native';
-
+import { StackNavigator } from 'react-navigation';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
-
-export default class App extends Component<{}> {
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'welcome'
+  };
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+      <View>
+        <Text>Home Screen</Text>
+        <Button
+          onPress={() => navigate('Chat')}
+          title="Chat with Morning"
+        />
       </View>
     );
   }
 }
-
+class ChatScreen extends React.Component {
+  static navigationOptions = {
+    title: ' chat with morning'
+  };
+  render() {
+    return (
+      <View>
+        <Text>Chat with Morning</Text>
+      </View>
+    );
+  }
+}
+const SimpleApp = StackNavigator({
+  Home: { screen: HomeScreen },
+  Chat: { screen: ChatScreen }
+});
+export default class App extends React.Component {
+  render() {
+    return <SimpleApp />;
+    // (
+    //   <View style={styles.container}>
+    //     <Text style={styles.welcome}>
+    //       Welcome to React Native!
+    //     </Text>
+    //     <Text style={styles.instructions}>
+    //       To get started, edit App.js
+    //     </Text>
+    //     <Text style={styles.instructions}>
+    //       {instructions}
+    //     </Text>
+    //   </View>
+    // );
+  }
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
