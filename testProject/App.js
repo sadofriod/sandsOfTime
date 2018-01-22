@@ -11,6 +11,8 @@ import {
   Text,
   View,
   Button,
+  TextInput,
+  Keyboard,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 const instructions = Platform.select({
@@ -23,14 +25,48 @@ class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'welcome'
   };
+  constructor(props) {
+    super(props)
+    this.state = {
+      accountValue: '',
+      passwordValue: ''
+    }
+  }
   render() {
     const { navigate } = this.props.navigation;
+
     return (
-      <View>
-        <Text>Home Screen</Text>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.loginInput}
+          placeholder='账号'
+          onChangeText={(text) => {
+            this.setState({
+              accountValue: text
+            })
+          }}
+          onBlur={
+            () => { 
+              Keyboard.dismiss();
+              alert(this.state.accountValue)  
+            }
+          }
+          value={this.state.text}
+        />
+        <TextInput
+          style={styles.loginInput}
+          placeholder='密码'
+          onChangeText={(text) => {
+            this.setState({
+              passwordValue: text
+            })
+          }}
+          value={this.state.text}
+        />
         <Button
           onPress={() => navigate('Chat')}
           title="Chat with Morning"
+          style={styles.loginInput}
         />
       </View>
     );
@@ -54,20 +90,20 @@ const SimpleApp = StackNavigator({
 });
 export default class App extends React.Component {
   render() {
-    return <SimpleApp />;
-    // (
-    //   <View style={styles.container}>
-    //     <Text style={styles.welcome}>
-    //       Welcome to React Native!
-    //     </Text>
-    //     <Text style={styles.instructions}>
-    //       To get started, edit App.js
-    //     </Text>
-    //     <Text style={styles.instructions}>
-    //       {instructions}
-    //     </Text>
-    //   </View>
-    // );
+    return (
+      // <View style={styles.container}>
+      //   <Text style={styles.welcome}>
+      //     Welcome to React Native!
+      //   </Text>
+      //   <Text style={styles.instructions}>
+      // To get started, edit App.js
+      <SimpleApp />
+      /*{ </Text>
+      <Text style={styles.instructions}>
+        {instructions}
+      </Text>
+    </View> }*/
+    );
   }
 }
 const styles = StyleSheet.create({
@@ -86,5 +122,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+    width: 50,
+
   },
+  loginInput: {
+    paddingLeft: 20,
+    width: 350,
+    height: 50,
+    fontSize: 14,
+    borderRadius: 8,
+    shadowRadius: 8,
+    shadowColor: 'rgba(34,34,34,.35)',
+    shadowOffset: { width: 0, height: 10 },
+    marginBottom: 30,
+  }
 });
