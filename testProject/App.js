@@ -13,6 +13,8 @@ import {
   Button,
   TextInput,
   Keyboard,
+  DrawerLayoutAndroid,
+  Dimensions,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 const instructions = Platform.select({
@@ -37,6 +39,7 @@ class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
+      
         <TextInput
           style={styles.loginInput}
           placeholder='账号'
@@ -46,9 +49,9 @@ class HomeScreen extends React.Component {
             })
           }}
           onBlur={
-            () => { 
+            () => {
               Keyboard.dismiss();
-              alert(this.state.accountValue)  
+              alert(this.state.accountValue)
             }
           }
           value={this.state.text}
@@ -64,7 +67,7 @@ class HomeScreen extends React.Component {
           value={this.state.text}
         />
         <Button
-          onPress={() => navigate('Chat')}
+          onPress={() => navigate('Main')}
           title="Chat with Morning"
           style={styles.loginInput}
         />
@@ -72,6 +75,7 @@ class HomeScreen extends React.Component {
     );
   }
 }
+
 class ChatScreen extends React.Component {
   static navigationOptions = {
     title: ' chat with morning'
@@ -84,10 +88,49 @@ class ChatScreen extends React.Component {
     );
   }
 }
+class MainScreen extends React.Component {
+  render() {
+    const { navigate } = this.props.navigation;
+    const menuView = (<View>
+      <Text>
+        main View touch move left
+      </Text>
+      <Button
+        onPress={() => navigate('Chat')}
+        title="Chat with Morning"
+        style={styles.loginInput}
+      />
+    </View>)
+    return (
+      <DrawerLayoutAndroid
+        drawerWidth={300}
+        drawerPosition={DrawerLayoutAndroid.positions.Left}
+        renderNavigationView={() => <Test />}
+      >
+        <View style={styles.container}>
+          <Text style={styles.instructions}>first</Text>
+          <Text style={styles.instructions}>second</Text>
+          
+        </View>
+      </DrawerLayoutAndroid>
+    )
+  }
+}
+class Test extends React.Component {
+  render(){
+    return (
+      <View>
+       <Text> sadasdasd</Text>
+      </View>
+    )
+  }
+}
 const SimpleApp = StackNavigator({
   Home: { screen: HomeScreen },
-  Chat: { screen: ChatScreen }
+  Chat: { screen: ChatScreen },
+  Main: { screen: MainScreen },
 });
+
 export default class App extends React.Component {
   render() {
     return (
@@ -97,7 +140,10 @@ export default class App extends React.Component {
       //   </Text>
       //   <Text style={styles.instructions}>
       // To get started, edit App.js
-      <SimpleApp />
+      <View style={{height:Dimensions.get('window').height,width:Dimensions.get('window').width}}>
+        <SimpleApp />
+      </View>
+
       /*{ </Text>
       <Text style={styles.instructions}>
         {instructions}
