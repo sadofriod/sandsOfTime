@@ -17,6 +17,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import HomePage from './home';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -89,11 +90,15 @@ class ChatScreen extends React.Component {
   }
 }
 class MainScreen extends React.Component {
+  static navigationOptions = {
+    header:null,
+  };
   render() {
     const { navigate } = this.props.navigation;
     const menuView = (<View>
       <Text>
         main View touch move left
+        
       </Text>
       <Button
         onPress={() => navigate('Chat')}
@@ -107,11 +112,7 @@ class MainScreen extends React.Component {
         drawerPosition={DrawerLayoutAndroid.positions.Left}
         renderNavigationView={() => <Test />}
       >
-        <View style={styles.container}>
-          <Text style={styles.instructions}>first</Text>
-          <Text style={styles.instructions}>second</Text>
-          
-        </View>
+      <HomePage/>
       </DrawerLayoutAndroid>
     )
   }
@@ -120,7 +121,8 @@ class Test extends React.Component {
   render(){
     return (
       <View>
-       <Text> sadasdasd</Text>
+        
+       <Text>{styles.loginInput} sadasdasd</Text>
       </View>
     )
   }
