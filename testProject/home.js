@@ -11,31 +11,64 @@ import {
 export default class HomePage extends React.Component {
     constructor(props) {
         super(props)
-        let that = this;
-        that.state = {
+        this.state = {
             date: new Date(),
             hour: new Date().getHours(),
             min: new Date().getMinutes(),
             sec: new Date().getSeconds(),
         }
+        var timeUpdate = null;
     }
-    componentDidUpdate(){
-        setInterval()
+    componentDidMount() {
+        this.timeUpdate = setInterval(
+            () => {
+                if (this.state.hour < 10) {
+                    this.setState({
+                        hour: '0' + new Date().getHours(),
+                        min: new Date().getMinutes(),
+                        sec: new Date().getSeconds(),
+                    })
+                }
+                else if (this.state.min < 10) {
+                    this.setState({
+                        hour: new Date().getHours(),
+                        min: '0' + new Date().getMinutes(),
+                        sec: new Date().getSeconds(),
+                    })
+                }
+                else if (this.state.sec < 10) {
+                    this.setState({
+                        hour: new Date().getHours(),
+                        min: new Date().getMinutes(),
+                        sec: '0' + new Date().getSeconds()
+                    })
+                }
+                else {
+                    this.setState({
+                        date: new Date(),
+                        hour: new Date().getHours(),
+                        min: new Date().getMinutes(),
+                        sec: new Date().getSeconds(),
+                    })
+
+                }
+            },500
+        )
     }
-    
-render() {
-    return (
-        <View style={styles.topBox}>
-            <View style={styles.timeBox}>
-                <Text style={styles.timeSpan}>{this.state.hour}</Text>
-                <Text style={styles.timeDivide}>:</Text>
-                <Text style={styles.timeSpan}>{this.state.min}</Text>
-                <Text style={styles.timeDivide}>:</Text>
-                <Text style={styles.timeSpan}>{this.state.sec}</Text>
+
+    render() {
+        return (
+            <View style={styles.topBox}>
+                <View style={styles.timeBox}>
+                    <Text style={styles.timeSpan}>{this.state.hour}</Text>
+                    <Text style={styles.timeDivide}>:</Text>
+                    <Text style={styles.timeSpan}>{this.state.min}</Text>
+                    <Text style={styles.timeDivide}>:</Text>
+                    <Text style={styles.timeSpan}>{this.state.sec}</Text>
+                </View>
             </View>
-        </View>
-    )
-}
+        )
+    }
 }
 const windowPX = {
     width: Dimensions.get('window').width,
