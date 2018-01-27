@@ -22,37 +22,38 @@ export default class HomePage extends React.Component {
     componentDidMount() {
         this.timeUpdate = setInterval(
             () => {
-                if (this.state.hour < 10) {
+                if (this.state.sec < 10) {
                     this.setState({
-                        hour: '0' + new Date().getHours(),
-                        min: new Date().getMinutes(),
-                        sec: new Date().getSeconds(),
-                    })
-                }
-                else if (this.state.min < 10) {
-                    this.setState({
-                        hour: new Date().getHours(),
-                        min: '0' + new Date().getMinutes(),
-                        sec: new Date().getSeconds(),
-                    })
-                }
-                else if (this.state.sec < 10) {
-                    this.setState({
-                        hour: new Date().getHours(),
-                        min: new Date().getMinutes(),
                         sec: '0' + new Date().getSeconds()
+                    })
+                }
+                else{
+                    this.setState({
+                        sec: new Date().getSeconds()
+                    })
+                }
+                if (this.state.min < 10) {
+                    this.setState({
+                        min: '0' + new Date().getMinutes(),
+
                     })
                 }
                 else {
                     this.setState({
-                        date: new Date(),
-                        hour: new Date().getHours(),
-                        min: new Date().getMinutes(),
-                        sec: new Date().getSeconds(),
+                        min:  new Date().getMinutes()
                     })
-
                 }
-            },500
+                if (this.state.hour < 10) {
+                    this.setState({
+                        hour: '0' + new Date().getHours(),
+                    })
+                }
+                else{
+                    this.setState({
+                        hour:  new Date().getHours()
+                    })
+                }
+            }
         )
     }
 
@@ -76,29 +77,38 @@ const windowPX = {
 }
 const styles = StyleSheet.create({
     topBox: {
-        height: windowPX.height * 0.37,
+        height: windowPX.height * 0.40,
         width: windowPX.width,
         backgroundColor: '#00345a',
+        borderBottomLeftRadius: (windowPX.height * 0.40)/2,
+        borderBottomRightRadius: (windowPX.height * 0.40)/2,
         // flex: 1,
         // justifyContent: 'flex-end',
         // alignItems: 'center',
+        shadowColor: '#ffffff',
+        shadowOffset: { width: 0, height: 0 },
+        shadowRadius: 10,
+        shadowOpacity: 1,
+        elevation:20,
     },
     timeBox: {
         flex: 1,
         flexDirection: 'row',
-        height: windowPX.height * 0.31,
-        width: windowPX.width * 0.84,
-        marginTop: windowPX.height * 0.06,
-        marginLeft: windowPX.width * 0.08,
+        height: windowPX.height * 0.26,
+        width: windowPX.width ,
+        marginTop: windowPX.height * 0.14,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#ff6c00',
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
+        borderBottomLeftRadius: (windowPX.height * 0.40)/2,
+        borderBottomRightRadius: (windowPX.height * 0.40)/2,
         shadowColor: '#ffffff',
         shadowOffset: { width: 0, height: 0 },
         shadowRadius: 10,
         shadowOpacity: 1,
+        elevation:4,
     },
     timeSpan: {
         height: windowPX.height * 0.06,
