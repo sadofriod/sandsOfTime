@@ -1,0 +1,26 @@
+[
+    {
+        "username":"morningStar",
+        "headImgaeSource":"./img/timg.jpg",
+        "title":"title1",
+        "context":"test context",
+        "numberOfPointsOfPrais":"2500",
+        "numberOfPointsOfChenk":"34324"
+    },
+    {
+        "username":"morningStar1",
+        "headImgaeSource":"./img/timg.jpg",
+        "title":"title2",
+        "context":"test context",
+        "numberOfPointsOfPrais":"1500",
+        "numberOfPointsOfChenk":"24324"
+    },
+    {
+        "username":"morningStar2",
+        "headImgaeSource":"./img/timg.jpg",
+        "title":"title3",
+        "context":"test context",
+        "numberOfPointsOfPrais":"3500",
+        "numberOfPointsOfChenk":"14324"
+    }
+]

@@ -10,6 +10,7 @@ import {
     Image,
     ImageBackground,
 } from 'react-native';
+import FirstPage from './homeTabNavigator/FirstPage'
 export default class HomePage extends React.Component {
     constructor(props) {
         super(props)
@@ -23,20 +24,38 @@ export default class HomePage extends React.Component {
 
     render() {
         return (
-            <View style={styles.topBox}>
-                <ImageBackground style={styles.topBoxBgI} source={require('./img/timg.jpg')}>
-                    <View style={styles.topLeftBox}>
-                        <View style={styles.topLeftWordBox}>
-                            <Text style={styles.topLeftWord}>week{this.state.day}</Text>
+            <View>
+                <View style={styles.topBox}>
+                    <ImageBackground style={styles.topBoxBgI} source={require('./img/timg.jpg')}>
+                        <View style={styles.topLeftBox}>
+                            <View style={styles.topLeftWordBox}>
+                                <Text style={styles.topLeftWord}>week{this.state.day}</Text>
+                            </View>
                         </View>
-                    </View>
-                    <View style={styles.topRightBox}>
-
-                    </View>
-                </ImageBackground>
-
+                        <View style={styles.topRightBox}>
+                            <View style={styles.userDataTube}>
+                                <View style={styles.tube}></View>
+                                <Text style={styles.tubePlan}>Lead</Text>
+                            </View>
+                            <View style={styles.userDataTube}>
+                                <View style={styles.tube}></View>
+                                <Text style={styles.tubePlan}>Play</Text>
+                            </View>
+                            <View style={styles.userDataTube}>
+                                <View style={styles.tube}></View>
+                                <Text style={styles.tubePlan}> Time</Text>
+                            </View>
+                            {/* <View style = {styles.userWorth}>
+                            <Text>Worth</Text>
+                            <Text></Text>
+                        </View> */}
+                        </View>
+                    </ImageBackground>
+                </View>
+                <View style={{height:windowPX.height*0.7}}>
+                    <FirstPage/>
+                </View>
             </View>
-
         )
     }
 }
@@ -54,6 +73,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#00345a',
     },
     topBoxBgI: {
+        flex: 0,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         height: windowPX.height * 0.30,
         width: windowPX.width,
     },
@@ -62,8 +85,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: windowPX.height * 0.30,
-        width: windowPX.width * 0.36,
+        width: windowPX.width * 0.40,
         padding: windowPX.width * 0.02,
+        backgroundColor: 'rgba(0,0,0,.75)',
     },
     topLeftWordBox: {
         flex: 0,
@@ -92,43 +116,13 @@ const styles = StyleSheet.create({
     },
     topRightBox: {
         flex: 0,
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         height: windowPX.height * 0.30,
         width: windowPX.width * 0.60,
+        backgroundColor: 'rgba(0,0,0,.75)',
         padding: windowPX.width * 0.02,
-    },
-    timeBox: {
-        flex: 1,
-        flexDirection: 'row',
-        height: windowPX.height * 0.26,
-        width: windowPX.width,
-        marginTop: windowPX.height * 0.14,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#ff6c00',
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
-        borderBottomLeftRadius: (windowPX.height * 0.40) / 2,
-        borderBottomRightRadius: (windowPX.height * 0.40) / 2,
-        shadowColor: '#ffffff',
-        shadowOffset: { width: 0, height: 0 },
-        shadowRadius: 10,
-        shadowOpacity: 1,
-        elevation: 4,
-    },
-    timeSpan: {
-        height: windowPX.height * 0.06,
-        width: windowPX.width * 0.13,
-        backgroundColor: '#00345a',
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,.35)',
-        color: '#fff',
-        textAlign: 'center',
-        lineHeight: windowPX.height * 0.05,
-        borderRadius: 8,
-        fontSize: 30,
-        padding: 5,
     },
     timeDivide: {
         height: windowPX.height * 0.06,
@@ -137,5 +131,30 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 30,
         fontWeight: "900",
+    },
+    userDataTube: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    tube: {
+        flex: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: windowPX.height * 0.15,
+        width: windowPX.width * 0.05,
+        borderRadius: 20,
+        backgroundColor: '#ff6c00',
+        marginBottom: 8,
+    },
+    tubePlan: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 18,
+    },
+    userWorth: {
+        flex: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
