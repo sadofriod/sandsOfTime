@@ -8,19 +8,22 @@ export default TabNavigation = TabNavigator(
         Settings: { screen: secondPage }
     },
     {
-        navigationOptions:({navigation})=>({
-            tabBarIcon:({focused, tintColor}) =>{
-                const {routeName} = navigation.state;
-                let 
-            }
-        }),
+    //     navigationOptions:({navigation})=>({
+    //         tabBarIcon:({focused, tintColor}) =>{
+    //             const {routeName} = navigation.state;
+    //             let 
+    //         }
+    //     }),
         tabBarOptions: {
-            activeTintColor: 'tomato',
+            activeTintColor: 'blue',
             inactiveTintColor: 'gray',
+            style:{
+                backgroundColor:'#fff',
+            }
         },
-        tabBarComponent: TabBarTop,
-        tabBarPosition: 'top',
-        animationEnabled: false,
-        swipeEnabled: false,
+    //     tabBarComponent: TabBarTop,
+    //     tabBarPosition: 'top',
+    //     animationEnabled: false,
+    //     swipeEnabled: false,
     }
 )
