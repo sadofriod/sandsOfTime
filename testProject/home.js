@@ -10,7 +10,7 @@ import {
     Image,
     ImageBackground,
 } from 'react-native';
-import FirstPage from './homeTabNavigator/FirstPage'
+import TabNavigation from './homeTabNavigator/TabNavigation'
 export default class HomePage extends React.Component {
     constructor(props) {
         super(props)
@@ -34,15 +34,21 @@ export default class HomePage extends React.Component {
                         </View>
                         <View style={styles.topRightBox}>
                             <View style={styles.userDataTube}>
-                                <View style={styles.tube}></View>
+                                <View style={styles.tubeBox}>
+                                    <View style={styles.tube}></View>
+                                </View>
                                 <Text style={styles.tubePlan}>Lead</Text>
                             </View>
                             <View style={styles.userDataTube}>
-                                <View style={styles.tube}></View>
+                                <View style={styles.tubeBox}>
+                                    <View style={styles.tube}></View>
+                                </View>
                                 <Text style={styles.tubePlan}>Play</Text>
                             </View>
                             <View style={styles.userDataTube}>
-                                <View style={styles.tube}></View>
+                                <View style={styles.tubeBox}>
+                                    <View style={styles.tube}></View>
+                                </View>
                                 <Text style={styles.tubePlan}> Time</Text>
                             </View>
                             {/* <View style = {styles.userWorth}>
@@ -52,8 +58,8 @@ export default class HomePage extends React.Component {
                         </View>
                     </ImageBackground>
                 </View>
-                <View style={{height:windowPX.height*0.7}}>
-                    <FirstPage/>
+                <View style={{ height: windowPX.height * 0.7 }}>
+                    <TabNavigation/>
                 </View>
             </View>
         )
@@ -139,12 +145,20 @@ const styles = StyleSheet.create({
     },
     tube: {
         flex: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: windowPX.height * 0.15,
+        height: windowPX.height * 0.08,
         width: windowPX.width * 0.05,
         borderRadius: 20,
         backgroundColor: '#ff6c00',
+    },
+    tubeBox: {
+        flex: 0,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        height: windowPX.height * 0.17,
+        width: windowPX.width * 0.06,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: '#fff',
         marginBottom: 8,
     },
     tubePlan: {
