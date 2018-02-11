@@ -15,9 +15,22 @@ import {
     TouchableHighlight,
 } from 'react-native';
 import TabNavigation from './homeTabNavigator/TabNavigation';
+import { StackNavigator } from 'react-navigation';
 const { UIManager } = NativeModules;
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 export default class HomePage extends React.Component {
+    render() {
+        return (
+            <View style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }}>
+                <Stack />
+            </View>
+        )
+    }
+}
+class HomePage1 extends React.Component {
+    static navigationOptions = {
+        header: null,
+    };
     constructor(props) {
         super(props)
         this.state = {
@@ -46,7 +59,7 @@ export default class HomePage extends React.Component {
             backDisplay: 'flex'
         });
     }
-    backMain =()=>{
+    backMain = () => {
         LayoutAnimation.spring();
         this.setState({
             topBoxHeight: windowPX.height * 0.3,
@@ -56,29 +69,6 @@ export default class HomePage extends React.Component {
             backDisplay: 'none'
         });
     }
-    detailBoxShow = () => {
-        LayoutAnimation.spring();
-        this.setState({
-            detailBoxDisplay: 'flex',
-            detailBoxHeight: windowPX.height,
-            mainDisplay: 'none',
-            mainHeight: 0,
-            showWidth: windowPX.width,
-            bottomBoxHeight: 0,
-        });
-    }
-    detailBoxhide = () => {
-        LayoutAnimation.spring()
-        this.setState({
-            detailBoxDisplay: 'none',
-            detailBoxHeight: 0,
-            mainDisplay: 'flex',
-            mainHeight: windowPX.height,
-            showWidth: windowPX.width,
-            
-        });
-        // setTimeout(,400)
-    }
     componentDidMount() {
 
     }
@@ -87,39 +77,10 @@ export default class HomePage extends React.Component {
 
     }
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View>
-                <ImageBackground style={[detailStyle.bgi, { height: this.state.detailBoxHeight, display: this.state.detailBoxDisplay, width: this.state.showWidth }]} source={require('./img/timg.jpg')}>
-                    <View style={detailStyle.detailBox}>
-                        <View style={detailStyle.topBox}>
-                            <View style={detailStyle.topChildBox}>
-                                <View style={styles.topLeftWordBox}>
-                                    <Text style={styles.topLeftWord}>week{this.state.day}</Text>
-                                </View>
-                            </View>
-                            <View style={detailStyle.topChildBox}>
-                                <Text style={{ fontWeight: '900', fontSize: 40, color: '#fff' }}>Worth:523</Text>
-                            </View>
-                        </View>
-                        <View style={detailStyle.bottomBox}>
-                            <View style={detailStyle.tubeBox}>
-                                <Text style={styles.tubePlan}>time</Text>
-                                <View style={detailStyle.tube}></View>
-                            </View>
-                            <View style={detailStyle.tubeBox}>
-                                <Text style={styles.tubePlan}>lead</Text>
-                                <View style={detailStyle.tube}></View>
-                            </View>
-                            <View style={detailStyle.tubeBox}>
-                                <Text style={styles.tubePlan}>join</Text>
-                                <View style={detailStyle.tube}></View>
-                            </View>
-                            <View style={detailStyle.tubeBox}>
-                                <Button title="back main" onPress={this.detailBoxhide} />
-                            </View>
-                        </View>
-                    </View>
-                </ImageBackground>
+
                 <View style={{ flex: 0, height: this.state.mainHeight, width: this.state.showWidth }}>
                     <ImageBackground style={[styles.topBoxBgI, { height: this.state.topBoxHeight, display: this.state.topBoxDisplay, width: this.state.showWidth }]} source={require('./img/timg.jpg')}>
                         <View style={styles.topBox}>
@@ -168,7 +129,7 @@ export default class HomePage extends React.Component {
                                 <Image style={{ flex: 1 }} />
                                 <TouchableHighlight style={{
                                     flex: 4,
-                                }} onPress={this.detailBoxShow}>
+                                }} onPress={() => navigate('Screen')}>
                                     <Text >
                                         For your recommendation, see more
                                     </Text>
@@ -183,9 +144,9 @@ export default class HomePage extends React.Component {
                         <TabNavigation ref="tab" />
                     </View>
                 </View>
-                <TouchableHighlight style={{ height: 50, width: 50, display: this.state.backDisplay, position: "absolute", right: 30, bottom: 50, borderRadius:25,borderColor:'#222',borderWidth:2}} onPress={this.backMain}>
+                <TouchableHighlight style={{ height: 50, width: 50, display: this.state.backDisplay, position: "absolute", right: 30, bottom: 50, borderRadius: 25, borderColor: '#222', borderWidth: 2 }} onPress={this.backMain}>
                     <View >
-                        <Text setyle={{height: 50, width: 50, fontSize: 50, fontWeight: '900',textAlign:'center' }}>是</Text>
+                        <Text setyle={{ height: 50, width: 50, fontSize: 50, fontWeight: '900', textAlign: 'center' }}>是</Text>
                     </View>
                 </TouchableHighlight>
 
@@ -193,6 +154,61 @@ export default class HomePage extends React.Component {
         )
     }
 }
+class Detail extends React.Component {
+    static navigationOptions = {
+        header: null
+    };
+    constructor (props){
+        super(props);
+        this.state ={
+            day: new Date().getDay()
+        }
+    }
+    render() {
+        const {navigate} = this.props.navigation
+        return (
+            <View>
+                <ImageBackground style={detailStyle.bgi} source={require('./img/timg.jpg')}>
+                    <View style={detailStyle.detailBox}>
+                        <View style={detailStyle.topBox}>
+                            <View style={detailStyle.topChildBox}>
+                                <View style={styles.topLeftWordBox}>
+                                    <Text style={styles.topLeftWord}>week{this.state.day}</Text>
+                                </View>
+                            </View>
+                            <View style={detailStyle.topChildBox}>
+                                <Text style={{ fontWeight: '900', fontSize: 40, color: '#fff' }}>Worth:523</Text>
+                            </View>
+                        </View>
+                        <View style={detailStyle.bottomBox}>
+                            <View style={detailStyle.tubeBox}>
+                                <Text style={styles.tubePlan}>time</Text>
+                                <View style={detailStyle.tube}></View>
+                            </View>
+                            <View style={detailStyle.tubeBox}>
+                                <Text style={styles.tubePlan}>lead</Text>
+                                <View style={detailStyle.tube}></View>
+                            </View>
+                            <View style={detailStyle.tubeBox}>
+                                <Text style={styles.tubePlan}>join</Text>
+                                <View style={detailStyle.tube}></View>
+                            </View>
+                            <View style={detailStyle.tubeBox}>
+                                <Button title="back main" onPress={()=>{
+                                    navigate('Home')
+                                }}/>
+                            </View>
+                        </View>
+                    </View>
+                </ImageBackground>
+            </View>
+        )
+    }
+}
+const Stack = StackNavigator({
+    Home: { screen: HomePage1 },
+    Screen: { screen: Detail }
+})
 const windowPX = {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
@@ -313,9 +329,8 @@ const styles = StyleSheet.create({
 });
 const detailStyle = StyleSheet.create({
     bgi: {
-        height: 0,
+        height: windowPX.height,
         width: windowPX.width,
-        display: 'none',
         flex: 0
     },
     detailBox: {
