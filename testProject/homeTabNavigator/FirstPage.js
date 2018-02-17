@@ -10,18 +10,29 @@ import {
     Image,
     ImageBackground,
     ListView,
+    TouchableHighlight
 } from 'react-native';
-import testData from './testData.json'
+import testData from './testData.json';
+import ActivityDetail from './activityDetail';
+import { StackNavigator } from 'react-navigation';
 export default class FirstPage extends React.Component {
+    render() {
+        return <StackNav />
+    }
+}
+class Main extends React.Component {
     constructor(props) {
         super(props);
         let td = testData
         let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        let { navigate } = this.props.navigation;
         this.state = {
             dataSource: ds.cloneWithRows(td),
         };
     }
-    
+    static navigationOptions = {
+        header: null
+    };
     render() {
         return (
             <ListView
@@ -40,41 +51,55 @@ export default class FirstPage extends React.Component {
     }
 }
 class ListItem extends React.Component {
-    // constructor(props) {
-    //     super(porps);
-    // }
-    shouldComponentUpdate(){
+    constructor(props) {
+        super(props);
+    }
+    
+    shouldComponentUpdate() {
         alert('state update');
     }
-    componentWillUpdate(){
-        
+    componentWillUpdate() {
+
     }
-    componentWillReceiveProps(){
+    componentWillReceiveProps() {
         alert('conmonent will update')
     }
+    moveToDetail() {
+
+    }
     render() {
+        
         return (
-            <View style={styles.listItem}>
-                <View style={styles.userInfoBox}>
-                    <Image style={{width:20,height:20,marginRight:15,borderRadius:10,borderWidth:1,borderColor:'#000'}} source={{uri:this.props.src}}/>
-                    <Text>
-                        {this.props.username}
-                    </Text>
+            <TouchableHighlight onPress={() => navigate('detail')}>
+                <View style={styles.listItem}>
+                    <View style={styles.userInfoBox}>
+                        <Image style={{ width: 20, height: 20, marginRight: 15, borderRadius: 10, borderWidth: 1, borderColor: '#000' }} source={{ uri: this.props.src }} />
+                        <Text>
+                            {this.props.username}
+                        </Text>
+                    </View>
+                    <View style={styles.contextBox}>
+                        <Text style={{ fontSize: 20, fontWeight: '900' }}>
+                            {this.props.title}
+                        </Text>
+                        <Text>{this.props.context}</Text>
+                    </View>
+                    <View style={{ flex: 1, justifyContent: 'flex-start', flexDirection: "row", }}>
+                        <Text style={{ flex: 1, marginRight: 8 }}>good: {this.props.numberOfPointsOfPraise}</Text>
+                        <Text style={{ flex: 3 }}>see: {this.props.numberOfPointsOfCheck}</Text>
+                    </View>
                 </View>
-                <View style={styles.contextBox}>
-                    <Text style={{ fontSize: 20, fontWeight: '900' }}>
-                        {this.props.title}
-                    </Text>
-                    <Text>{this.props.context}</Text>
-                </View>
-                <View style={{ flex: 1, justifyContent: 'flex-start', flexDirection: "row", }}>
-                    <Text style={{ flex: 1, marginRight: 8 }}>good: {this.props.numberOfPointsOfPraise}</Text>
-                    <Text style={{ flex: 3 }}>see: {this.props.numberOfPointsOfCheck}</Text>
-                </View>
-            </View>
+            </TouchableHighlight>
         )
     }
 }
+const StackNav = StackNavigator(
+    {
+        Main: { screen: Main },
+        detail: { screen: ActivityDetail },
+        listItem: { screen: ListItem }
+    }
+)
 const windowPX = {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
@@ -99,7 +124,7 @@ const styles = StyleSheet.create({
     userInfoBox: {
         flex: 0,
         justifyContent: 'flex-start',
-        flexDirection:'row',
+        flexDirection: 'row',
         alignItems: 'center',
         height: 35,
         width: windowPX.width * 0.885,

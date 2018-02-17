@@ -136,21 +136,9 @@ const SimpleApp = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      // <View style={styles.container}>
-      //   <Text style={styles.welcome}>
-      //     Welcome to React Native!
-      //   </Text>
-      //   <Text style={styles.instructions}>
-      // To get started, edit App.js
       <View style={{height:Dimensions.get('window').height,width:Dimensions.get('window').width}}>
         <SimpleApp />
       </View>
-
-      /*{ </Text>
-      <Text style={styles.instructions}>
-        {instructions}
-      </Text>
-    </View> }*/
     );
   }
 }
