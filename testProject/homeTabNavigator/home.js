@@ -14,7 +14,8 @@ import {
     LayoutAnimation,
     TouchableHighlight,
 } from 'react-native';
-import TabNavigation from './homeTabNavigator/TabNavigation';
+import ActivityDetail from './ActivityDetail';
+import TabNavigation from './TabNavigation';
 import { StackNavigator } from 'react-navigation';
 const { UIManager } = NativeModules;
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -141,7 +142,7 @@ class HomePage1 extends React.Component {
                         </View>
                     </ImageBackground>
                     <View style={{ height: this.state.bottomBoxHeight }}>
-                        <TabNavigation ref="tab" />
+                        <TabNavigation ref="tab" screenProps={{navigator:this.props.navigation}}/>
                     </View>
                 </View>
                 <TouchableHighlight style={{ height: 50, width: 50, display: this.state.backDisplay, position: "absolute", right: 30, bottom: 50, borderRadius: 25, borderColor: '#222', borderWidth: 2 }} onPress={this.backMain}>
@@ -149,7 +150,6 @@ class HomePage1 extends React.Component {
                         <Text setyle={{ height: 50, width: 50, fontSize: 50, fontWeight: '900', textAlign: 'center' }}>是</Text>
                     </View>
                 </TouchableHighlight>
-
             </View>
         )
     }
@@ -207,7 +207,9 @@ class Detail extends React.Component {
 }
 const Stack = StackNavigator({
     Home: { screen: HomePage1 },
-    Screen: { screen: Detail }
+    Screen: { screen: Detail },
+    ListDetail:{ screen: ActivityDetail },
+    // TabNavigation:{ screen: TabNavigation },
 })
 const windowPX = {
     width: Dimensions.get('window').width,

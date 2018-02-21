@@ -17,7 +17,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import HomePage from './home';
+import HomePage from './homeTabNavigator/home';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',

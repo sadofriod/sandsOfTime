@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { TabNavigator, TabBarBottom, TabBarTop } from 'react-navigation';
-import firstPage from './FirstPage';
-import secondPage from './SecondPage';
+import FirstPage from './FirstPage';
+import SecondPage from './SecondPage';
 export default TabNavigation = TabNavigator(
     {
-        Home: { screen: firstPage },
-        Settings: { screen: secondPage }
+        Home: { screen: FirstPage },
+        Settings: { screen: SecondPage }
     },
     {
     //     navigationOptions:({navigation})=>({
