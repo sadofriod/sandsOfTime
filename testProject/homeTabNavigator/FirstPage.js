@@ -59,13 +59,13 @@ class ListItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+
         }
     }
     // static navigationOptions = {
     //     header: null
     // };
-    
+
     shouldComponentUpdate() {
         alert('state update');
     }
@@ -80,19 +80,17 @@ class ListItem extends React.Component {
     // }
     render() {
         return (
-            <TouchableHighlight onPress={()=>{
-                
-                    this.props.nav({
-                        username: this.props.username,
-                        title: this.props.title,
-                        context: this.props.context,
-                        nopop: this.props.numberOfPointsOfPraise,
-                        nopoc: this.props.numberOfPointsOfCheck,
-                        headImgaeSource:this.props.headImgaeSource,
-                    })
-                    // alert('click')
-                
-            }}>
+            <TouchableHighlight onPress={() => {
+                this.props.nav({
+                    username: this.props.username,
+                    title: this.props.title,
+                    context: this.props.context,
+                    nopop: this.props.numberOfPointsOfPraise,
+                    nopoc: this.props.numberOfPointsOfCheck,
+                    headImgaeSource: this.props.src,
+                })
+                // alert('click')
+            }} underlayColor='#fff'>
                 <View style={styles.listItem}>
                     <View style={styles.userInfoBox}>
                         <Image style={{ width: 20, height: 20, marginRight: 15, borderRadius: 10, borderWidth: 1, borderColor: '#000' }} source={{ uri: this.props.src }} />

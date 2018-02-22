@@ -10,9 +10,10 @@ import {
     Image,
     ImageBackground,
     ListView,
-    AsyncStorage
+    AsyncStorage,
+    ScrollView
 } from 'react-native';
-
+import Storage from 'react-native-storage';
 export default class ActivityDetail extends React.Component {
     constructor(props) {
         super(props);
@@ -24,28 +25,31 @@ export default class ActivityDetail extends React.Component {
             nopoc: this.props.navigation.state.params.nopoc,
             src: this.props.navigation.state.params.headImgaeSource,
         }
-        // alert(this.props.navigation.state.params);
+        // alert(this.state.src);
     }
     // static navigationOptions ={
     //     header: null
     // }
     render() {
         return (
-            <View style={{ backgroundColor: '#fff', height: 400 }}>
-                <Text>{this.state.title}</Text>
-                <View>
-                    <Image source={{ uri: this.state.src }} />
-                    <Text>{this.state.username}qwewq</Text>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.passageContent}>
+                <View style={styles.detailBox}>
+                    <Text style={styles.passageTitel}>{this.state.title}</Text>
+                    <View style={styles.userInfo}>
+                        <Image style={styles.userHeader} source={{ uri: this.state.src }} />
+                        <Text style={styles.username}>{this.state.username}qwewq</Text>
+                    </View>
+                    <Text>{this.state.context}</Text>
+
+                    <View style={styles.passageControl}>
+                        <Text>{this.state.nopop}</Text>
+                        <Text>{this.state.nopoc}</Text>
+                        <Button
+                            title="Enroll"
+                        />
+                    </View>
                 </View>
-                <View><Text>{this.state.context}</Text></View>
-                <View>
-                    <Text>{this.state.nopop}</Text>
-                    <Text>{this.state.nopoc}sadasd</Text>
-                    <Button
-                        title="Enroll"
-                    />
-                </View>
-            </View>
+            </ScrollView>
         )
     }
 }
@@ -55,9 +59,58 @@ const windowPX = {
 }
 const styles = StyleSheet.create({
     detailBox: {
+        flex: 0,
         height: windowPX.height,
         width: windowPX.width,
-        backgroundColor: '#000'
     },
-
+    passageTitel: {
+        flex: 0,
+        justifyContent: 'center',
+        height: windowPX.height * 0.10,
+        width: windowPX.width,
+        fontSize: 30,
+        padding: 5,
+        paddingLeft: 20,
+        fontWeight: '900',
+        marginBottom: windowPX.height * 0.01,
+        backgroundColor: '#fff',
+        elevation: 6,
+    },
+    userInfo: {
+        flex: 0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: windowPX.height * 0.09,
+        width: windowPX.width,
+        borderBottomWidth: 1,
+        borderColor: 'rgba(50,50,50,0.25)',
+        backgroundColor: '#fff',
+        paddingLeft: 20,
+    },
+    userHeader: {
+        flex: 0,
+        height: windowPX.height * 0.06,
+        width: windowPX.height * 0.06,
+        borderRadius: windowPX.height * 0.03,
+        borderColor: 'rgba(50,50,50,0.25)',
+        borderWidth: 1,
+        marginRight: 15,
+    },
+    username: {
+        flex: 3,
+        fontSize: 18,
+        color: '#222',
+    },
+    passageContent: {
+        backgroundColor: '#fff',
+    },
+    passageControl: {
+        flex: 1,
+        alignItems:'center',
+        position: 'absolute',
+        bottom: 0,
+        flexDirection: 'row',
+        height: windowPX.height * 0.08,
+        width: windowPX.height * 0.08,
+    }
 })
