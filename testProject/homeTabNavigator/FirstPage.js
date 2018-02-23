@@ -114,17 +114,6 @@ class ListItem extends React.Component {
         )
     }
 }
-// const StackNav = StackNavigator(
-//     {
-//         Main: { screen: Main },
-//         listItem: { screen: ListItem },
-//         detail: { screen: ActivityDetail },
-//     },
-//     {
-//         initialRouteName: 'Main'
-//     }
-// )
-
 const windowPX = {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height

@@ -14,7 +14,7 @@ import {
     LayoutAnimation,
     TouchableHighlight,
 } from 'react-native';
-import ActivityDetail from './ActivityDetail';
+import ActivityDetail, { ActivityStack } from './ActivityDetail';
 import TabNavigation from './TabNavigation';
 import { StackNavigator } from 'react-navigation';
 const { UIManager } = NativeModules;
@@ -208,7 +208,7 @@ class Detail extends React.Component {
 const Stack = StackNavigator({
     Home: { screen: HomePage1 },
     Screen: { screen: Detail },
-    ListDetail:{ screen: ActivityDetail },
+    ListDetail:{ screen: ActivityStack },
     // TabNavigation:{ screen: TabNavigation },
 })
 const windowPX = {

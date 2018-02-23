@@ -15,6 +15,8 @@ import {
 } from 'react-native';
 import Storage from 'react-native-storage';
 import { styles } from './style/detail';
+import comment from './comment/commentListContianer';
+import { StackNavigator } from 'react-navigation';
 export default class ActivityDetail extends React.Component {
     constructor(props) {
         super(props);
@@ -61,6 +63,7 @@ export default class ActivityDetail extends React.Component {
                             <Button
                                 title="comment"
                                 style={styles.enrollStyle}
+                                onPress={this.props.navigation.navigte('comment')}
                             />
                         </View>
                         <Button
@@ -75,7 +78,6 @@ export default class ActivityDetail extends React.Component {
                                     nopoc: this.state.nopoc,
                                     src: this.state.headImgaeSource,
                                 });
-                                alert('post');
                             }}
                         />
                     </View>
@@ -84,3 +86,7 @@ export default class ActivityDetail extends React.Component {
         )
     }
 }
+export const ActivityStack = StackNavigator({
+    Home: { screen: ActivityDetail },
+    comment: { screen: comment},
+})
