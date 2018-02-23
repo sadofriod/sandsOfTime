@@ -15,6 +15,7 @@ import {
   Keyboard,
   DrawerLayoutAndroid,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import HomePage from './homeTabNavigator/home';
@@ -40,7 +41,7 @@ class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-      
+        <StatusBar hidden={true} />
         <TextInput
           style={styles.loginInput}
           placeholder='账号'
