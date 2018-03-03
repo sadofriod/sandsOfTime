@@ -28,11 +28,12 @@ export default class ActivityDetail extends React.Component {
             nopoc: this.props.navigation.state.params.nopoc,
             src: this.props.navigation.state.params.headImgaeSource,
         }
+        
         // alert(this.state.src);
     }
-    // static navigationOptions ={
-    //     header: null
-    // }
+    static navigationOptions ={
+        header: null
+    }
     enrollActivity() {
         DeviceEventEmitter.emit('addListItem', {
             username: this.state.username,
@@ -63,7 +64,7 @@ export default class ActivityDetail extends React.Component {
                             <Button
                                 title="comment"
                                 style={styles.enrollStyle}
-                                onPress={this.props.navigation.navigte('comment')}
+                                onPress={()=>this.props.navigation.navigate('comment')}
                             />
                         </View>
                         <Button
@@ -89,4 +90,5 @@ export default class ActivityDetail extends React.Component {
 export const ActivityStack = StackNavigator({
     Home: { screen: ActivityDetail },
     comment: { screen: comment},
+    initialRouteName:{screen:'Home'}
 })

@@ -18,7 +18,6 @@ export default class commentListItem extends React.Component {
                 </View>
                 <View  style={styles.commentTargetBox}>
                     <Text style={styles.commentTarget}>{this.props.nopop}</Text>
-                    <Text style={styles.commentTarget}>{this.props.nopoc}</Text>
                 </View>
             </View>
         )

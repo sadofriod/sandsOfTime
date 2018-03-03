@@ -21,16 +21,18 @@ export default class SecondPage extends React.Component {
         this.state = {
             dataSource: ds.cloneWithRows(td),
             td: td,
+            rowLenght:0
         };
     }
     componentDidMount() {
         DeviceEventEmitter.addListener('addListItem', (enrollData) => {
-            let td = [];
-            td.push(enrollData)
+            this.state.td.push(enrollData)
+            this.setState ({
+                td: this.state.td,
+            });
             let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
             this.setState ({
-                dataSource: ds.cloneWithRows(td),
-                td: td,
+                dataSource: ds.cloneWithRows(this.state.td),
             });
         })
     }
