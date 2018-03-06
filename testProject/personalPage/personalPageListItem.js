@@ -3,67 +3,18 @@ import {
     StyleSheet,
     Text,
     View,
-    Button,
-    TextInput,
-    Keyboard,
-    Dimensions,
     Image,
-    ImageBackground,
-    ListView,
-    TouchableHighlight
+    Dimensions,
+    TouchableHighlight,
+    DeviceEventEmitter,
+    ScrollView,
 } from 'react-native';
-import testData from './testData.json';
-import ActivityDetail from './ActivityDetail';
-// import { StackNavigator } from 'react-navigation';
-// export default class FirstPage extends React.Component {
-//     render() {
-//         return <StackNav />
-//     }
-// }
-export default class FirstPage extends React.Component {
-    constructor(props) {
+export default class listItem extends React.Component{
+    constructor(props){
         super(props);
-        let td = testData
-        let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-        this.state = {
-            dataSource: ds.cloneWithRows(td),
-        };
-        // alert(this.props.screenProps);
     }
-    // static navigationOptions = {
-    //     header: null
-    // };
-    render() {
-        let { navigate } = this.props.screenProps.navigator;
-        return (
-            <ListView
-                style={{ width: windowPX.width, backgroundColor: '#fff' }}
-                dataSource={this.state.dataSource}
-                renderRow={(rowData) => <ListItem
-                    username={rowData.username}
-                    title={rowData.title}
-                    context={rowData.context}
-                    numberOfPointsOfPraise={rowData.numberOfPointsOfPraise}
-                    numberOfPointsOfCheck={rowData.numberOfPointsOfCheck}
-                    src={rowData.headImgaeSource}
-                    nav={(itemData) => {
-                        navigate('ListDetail', itemData)
-                        console.log(itemData);
-                    }}
-                />}
-            />
-        );
-    }
-}
-class ListItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-    render() {
-        return (
+    render(){
+        return(
             <TouchableHighlight onPress={() => {
                 this.props.nav({
                     username: this.props.username,
@@ -80,7 +31,6 @@ class ListItem extends React.Component {
                         <Image style={{ width: 20, height: 20, marginRight: 15, borderRadius: 10, borderWidth: 1, borderColor: '#000' }} source={{ uri: this.props.src }} />
                         <Text>
                             {this.props.username}
-
                         </Text>
                     </View>
                     <View style={styles.contextBox}>

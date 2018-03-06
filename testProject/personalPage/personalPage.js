@@ -9,6 +9,7 @@ import {
     ListView,
     TouchableHighlight,
     DeviceEventEmitter,
+    ScrollView,
 } from 'react-native';
 export default class personalPage extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ export default class personalPage extends React.Component {
     }
     render() {
         return (
-            <View>
+            <ScrollView>
                 <TouchableHighlight>
                     <Image/>
                     <View>
@@ -24,7 +25,14 @@ export default class personalPage extends React.Component {
                         <Text></Text>
                     </View>
                 </TouchableHighlight>
-            </View>
+                <View>
+                    <Text></Text>
+                    <Text></Text>                    
+                </View>
+                <View>
+                    {map()}                    
+                </View>
+            </ScrollView>
         )
     }
 }
