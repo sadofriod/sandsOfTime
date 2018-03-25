@@ -10,6 +10,7 @@ import {
     TouchableHighlight,
     DeviceEventEmitter,
 } from 'react-native';
+//test
 export default class SecondPage extends React.Component {
     constructor(props) {
         super(props);
